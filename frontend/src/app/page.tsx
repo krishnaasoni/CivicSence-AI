@@ -32,10 +32,10 @@ import { CivicReport } from "@/components/CivicMap";
 const CivicMap = dynamic(() => import("@/components/CivicMap"), {
   ssr: false,
   loading: () => (
-    <div className="h-full min-h-[460px] w-full flex flex-col items-center justify-center rounded-3xl bg-slate-950/80 border border-slate-800">
+    <div className="h-full min-h-[460px] w-full flex flex-col items-center justify-center rounded-3xl bg-slate-950/80 border border-white/10">
       <div className="flex items-center gap-3 text-xs text-slate-300 font-mono">
-        <span className="h-3 w-3 rounded-full bg-civic-cyan animate-ping" />
-        Synchronizing Geospatial Satellite & Street Grid...
+        <span className="h-3 w-3 rounded-full bg-cyan-400 animate-ping" />
+        Synchronizing Geospatial Satellite &amp; Street Grid...
       </div>
     </div>
   ),
@@ -111,14 +111,16 @@ export default function Home() {
     fetchTickets();
   }, [refreshKey]);
 
-  // Key KPI Statistics
+  // Key KPI Statistics with Individual Jewel Glow Colors
   const stats = [
     { 
       label: "Active Civic Hazards", 
       value: `${tickets.filter(t => t.status !== "RESOLVED").length || "1,248"}`, 
       change: "+12.4% /wk", 
       icon: ShieldAlert, 
-      color: "text-civic-amber", 
+      color: "text-amber-400",
+      glowBg: "from-amber-500/10 to-transparent",
+      borderColor: "hover:border-amber-400/50 hover:shadow-luxury-gold",
       subtext: "Prioritized via Gemini AI" 
     },
     { 
@@ -126,7 +128,9 @@ export default function Home() {
       value: "98.4%", 
       change: "+4.1%", 
       icon: CheckCircle2, 
-      color: "text-civic-emerald", 
+      color: "text-emerald-400",
+      glowBg: "from-emerald-500/10 to-transparent",
+      borderColor: "hover:border-emerald-400/50 hover:shadow-luxury-mint",
       subtext: "Haversine 50m clustered" 
     },
     { 
@@ -134,7 +138,9 @@ export default function Home() {
       value: "84 / 100", 
       change: "+6.8 pts", 
       icon: Leaf, 
-      color: "text-civic-cyan", 
+      color: "text-cyan-400",
+      glowBg: "from-cyan-500/10 to-transparent",
+      borderColor: "hover:border-cyan-400/50 hover:shadow-luxury-cyan",
       subtext: "-142 Tons carbon saved" 
     },
     { 
@@ -142,7 +148,9 @@ export default function Home() {
       value: "1.4 hrs", 
       change: "-62%", 
       icon: Activity, 
-      color: "text-civic-blue", 
+      color: "text-blue-400",
+      glowBg: "from-blue-500/10 to-transparent",
+      borderColor: "hover:border-blue-400/50 hover:shadow-luxury-indigo",
       subtext: "Compared to legacy 72h" 
     },
   ];
@@ -196,29 +204,29 @@ export default function Home() {
 
   return (
     <>
-      {/* 1. Cinematic Holographic Boot Loader (Shows once per session) */}
+      {/* 1. Holographic Boot Loader (Shows once per session) */}
       <CommandBootLoader onComplete={() => {}} />
 
-      <main className="min-h-screen bg-mesh-grid text-slate-100 flex flex-col gap-10 sm:gap-14 px-4 sm:px-6 md:px-12 py-6 max-w-7xl mx-auto transition-colors duration-400">
+      <main className="min-h-screen bg-mesh-grid text-slate-100 flex flex-col gap-10 sm:gap-16 px-4 sm:px-6 md:px-12 py-6 max-w-7xl mx-auto transition-colors duration-400">
         
-        {/* 2. TOP COMMAND NAVIGATION BAR (Palantir / Tesla Header) */}
-        <header className="glass-panel px-5 sm:px-7 py-3.5 rounded-3xl flex flex-wrap items-center justify-between gap-4 sticky top-4 z-40 shadow-glass-card">
+        {/* 2. FLOATING APPLE / LINEAR STYLE COMMAND NAVBAR */}
+        <header className="glass-panel px-5 sm:px-7 py-3 rounded-full flex flex-wrap items-center justify-between gap-4 sticky top-4 z-40 shadow-glass-specular">
           {/* Logo & Tagline */}
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-cyan-400 to-blue-500 flex items-center justify-center shadow-neon-cyan relative group">
+            <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-400 via-cyan-400 to-indigo-500 flex items-center justify-center shadow-luxury-cyan relative group">
               <Sparkles className="h-5 w-5 text-slate-950 font-black group-hover:rotate-12 transition-transform" />
-              <div className="absolute -inset-1 rounded-2xl bg-cyan-400/20 blur-sm pointer-events-none" />
+              <div className="absolute -inset-1 rounded-2xl bg-cyan-400/30 blur-sm pointer-events-none" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-extrabold text-lg sm:text-xl tracking-tight text-white flex items-center">
-                  CivicSense <span className="text-civic-cyan ml-1">AI</span>
+                <h1 className="font-black text-lg sm:text-xl tracking-tight text-white flex items-center">
+                  CivicSense <span className="text-cyan-400 ml-1">AI</span>
                 </h1>
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-950/70 text-cyan-300 border border-cyan-700/60 hidden sm:inline">
+                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 hidden sm:inline">
                   OS v2.4
                 </span>
               </div>
-              <p className="text-[10px] text-slate-400 font-mono tracking-wider uppercase">
+              <p className="text-[9px] text-slate-400 font-mono tracking-widest uppercase">
                 See Your City • Understand Impact • Shape The Future
               </p>
             </div>
@@ -227,8 +235,8 @@ export default function Home() {
           {/* Telemetry Status Indicators */}
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             {/* Live Model Status Pill */}
-            <div className="hidden md:flex items-center gap-2 text-xs font-mono font-medium text-emerald-400 bg-emerald-950/40 border border-emerald-800/60 px-3.5 py-1.5 rounded-full shadow-glow-subtle">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="hidden md:flex items-center gap-2 text-xs font-mono font-medium text-emerald-300 bg-emerald-950/50 border border-emerald-500/40 px-3.5 py-1.5 rounded-full shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00F5A0]" />
               <span>Gemini 1.5 Flash Connected • 142ms</span>
             </div>
 
@@ -238,7 +246,7 @@ export default function Home() {
                 setPowTargetIssueId("CR-1049");
                 setIsPowModalOpen(true);
               }}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-slate-900 border border-cyan-500/40 text-cyan-300 hover:bg-slate-800 hover:border-cyan-400 transition-all shadow-sm"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-white/5 border border-white/10 text-cyan-300 hover:bg-white/10 hover:border-cyan-400 transition-all shadow-sm"
               title="Audit contractor repair using multimodal AI before vs. after comparison"
             >
               <FileCheck2 className="h-3.5 w-3.5 text-cyan-400" />
@@ -246,7 +254,7 @@ export default function Home() {
             </button>
 
             {/* Civic-Token Balance Pill */}
-            <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 bg-amber-950/50 border border-amber-800/70 px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.25)] font-mono">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300 bg-amber-950/60 border border-amber-500/40 px-3.5 py-1.5 rounded-full shadow-luxury-gold font-mono">
               <Coins className="h-3.5 w-3.5 text-amber-400" />
               <span>{civicBalance.toLocaleString()} CIVIC</span>
             </div>
@@ -254,7 +262,7 @@ export default function Home() {
             {/* Light / Dark Mode Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl border transition-all text-xs flex items-center justify-center bg-slate-900/80 border-slate-700 text-amber-300 hover:text-white hover:border-slate-500 shadow-sm"
+              className="p-2 rounded-full border transition-all text-xs flex items-center justify-center bg-white/5 border-white/10 text-amber-300 hover:text-white hover:border-white/25 shadow-sm"
               aria-label="Toggle Theme"
               title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
             >
@@ -268,30 +276,32 @@ export default function Home() {
             {/* Primary Action Button */}
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="px-4 py-2 rounded-2xl text-xs font-extrabold bg-civic-glow text-slate-950 shadow-neon-emerald hover:brightness-110 active:scale-95 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 rounded-full text-xs font-extrabold bg-civic-glow text-slate-950 shadow-luxury-mint hover:brightness-110 active:scale-95 transition-all flex items-center gap-1.5"
             >
               <Sparkles className="h-3.5 w-3.5" /> + Report Civic Issue
             </button>
           </div>
         </header>
 
-        {/* 3. CINEMATIC HERO EXPERIENCE (Tesla / Palantir Full-Screen Vision) */}
-        <section className="relative overflow-hidden rounded-3xl glass-panel-glow p-8 sm:p-12 md:p-16 border border-emerald-500/30">
+        {/* 3. CINEMATIC HERO EXPERIENCE (Palantir / Apple Vision Pro Luxury) */}
+        <section className="relative overflow-hidden rounded-3xl glass-panel-glow p-8 sm:p-14 md:p-16 border border-white/15">
           {/* Ambient Lighting Orbs */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-[600px] h-[600px] bg-cyan-500/20 rounded-full blur-[150px] pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[140px] pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl space-y-6">
             {/* Tagline Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-slate-950/80 border border-cyan-500/50 text-cyan-300 shadow-glow-subtle">
-              <Radio className="h-3.5 w-3.5 text-emerald-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-white/[0.06] border border-cyan-400/40 text-cyan-300 shadow-sm backdrop-blur-md">
+              <Radio className="h-3.5 w-3.5 text-emerald-400 animate-pulse shadow-[0_0_8px_#00F5A0]" />
               <span>&quot;See Your City. Understand Impact. Shape The Future.&quot;</span>
             </div>
 
-            {/* Headline Animation with Light Sweep */}
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-[1.1]">
-              Our Cities Generate Data. <br />
-              <span className="text-shimmer">
+            {/* Headline with Liquid Chrome Metal Gradient & Shimmer */}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.08]">
+              <span className="text-chrome block">
+                Our Cities Generate Data.
+              </span>
+              <span className="text-shimmer block mt-1">
                 We Turn It Into Action.
               </span>
             </h2>
@@ -301,40 +311,40 @@ export default function Home() {
               AI-powered civic intelligence platform helping governments, municipal authorities, and sustainability leaders make faster, data-backed decisions through multimodal vision understanding.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            {/* Magnetic CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-4 pt-3">
               <button
                 onClick={scrollToCommandCenter}
-                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-bold bg-civic-glow text-slate-950 shadow-neon-cyan hover:brightness-110 active:scale-[0.98] transition-all flex items-center gap-2"
+                className="px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-bold bg-civic-glow text-slate-950 shadow-luxury-cyan hover:brightness-110 active:scale-[0.98] transition-all flex items-center gap-2"
               >
                 Explore Command Platform <ArrowRight className="h-4 w-4" />
               </button>
 
               <button
                 onClick={handleRunAnalysis}
-                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold bg-slate-900/90 border border-slate-700 text-slate-200 hover:bg-slate-800 hover:border-cyan-500/50 transition-all flex items-center gap-2 shadow-sm"
+                className="px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-semibold bg-white/[0.05] border border-white/15 text-white hover:bg-white/[0.1] hover:border-cyan-400/50 transition-all flex items-center gap-2 shadow-sm backdrop-blur-md"
               >
                 <Zap className="h-4 w-4 text-cyan-400" /> Watch AI Triage Demo
               </button>
             </div>
 
             {/* Real-Time City Pulse Telemetry Strip */}
-            <div className="pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
+            <div className="pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
               <div>
-                <span className="text-slate-400 block text-[11px]">AI Model</span>
-                <span className="text-white font-bold">Gemini 1.5 Flash Vision</span>
+                <span className="text-slate-400 block text-[11px] font-sans">AI Vision Core</span>
+                <span className="text-white font-bold text-chrome">Gemini 1.5 Flash</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Spatial Clustering</span>
-                <span className="text-cyan-400 font-bold">50m Haversine Radius</span>
+                <span className="text-slate-400 block text-[11px] font-sans">Spatial Clustering</span>
+                <span className="text-cyan-300 font-bold">50m Haversine Radius</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Dispatch Latency</span>
-                <span className="text-emerald-400 font-bold">1.4 Hours (vs 72h)</span>
+                <span className="text-slate-400 block text-[11px] font-sans">Dispatch Latency</span>
+                <span className="text-emerald-300 font-bold">1.4 Hours (vs 72h)</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Carbon Offset</span>
-                <span className="text-amber-400 font-bold">-142.8 Metric Tons</span>
+                <span className="text-slate-400 block text-[11px] font-sans">Carbon Prevention</span>
+                <span className="text-amber-300 font-bold">-142.8 Metric Tons</span>
               </div>
             </div>
           </div>
@@ -349,46 +359,46 @@ export default function Home() {
           {/* Section Banner */}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-950/60 text-cyan-400 border border-cyan-800/50 mb-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-950/70 text-cyan-300 border border-cyan-500/40 mb-1">
                 <Globe2 className="h-3 w-3 text-cyan-400" />
-                LIVE AUTONOMOUS OPERATIONS
+                AUTONOMOUS COMMAND GRID
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                City Command Center &amp; Geospatial Grid
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight text-chrome">
+                City Operations &amp; Geospatial Matrix
               </h3>
             </div>
 
             <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>REAL-TIME STREAM ACTIVE</span>
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00F5A0]" />
+              <span>REAL-TIME TELEMETRY FEED</span>
             </div>
           </div>
 
-          {/* 4 Metric KPI Cards */}
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* 4 Luxury Bento Metric Cards */}
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.08 * i }}
-                className="glass-panel p-5 rounded-3xl hover:border-cyan-500/40 transition-all group relative overflow-hidden"
+                className={`glass-panel p-6 rounded-3xl border border-white/10 transition-all group relative overflow-hidden bg-gradient-to-b ${stat.glowBg} ${stat.borderColor}`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-slate-400">{stat.label}</span>
-                  <div className={`p-2.5 rounded-2xl bg-slate-900/90 border border-slate-800 ${stat.color}`}>
+                  <span className="text-xs font-semibold text-slate-400 font-sans">{stat.label}</span>
+                  <div className={`p-2.5 rounded-2xl bg-white/5 border border-white/10 ${stat.color} shadow-sm group-hover:scale-110 transition-transform`}>
                     <stat.icon className="h-4 w-4" />
                   </div>
                 </div>
                 <div className="flex items-baseline justify-between">
-                  <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white font-mono">
+                  <span className="text-2xl sm:text-3xl font-black tracking-tight text-white font-mono text-chrome">
                     {stat.value}
                   </span>
-                  <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/50 px-2 py-0.5 rounded-md border border-emerald-800/50">
+                  <span className="text-xs font-mono font-bold text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/30">
                     {stat.change}
                   </span>
                 </div>
-                <p className="text-[11px] font-mono text-slate-400 mt-2">
+                <p className="text-[11px] font-mono text-slate-400 mt-2 font-light">
                   {stat.subtext}
                 </p>
               </motion.div>
@@ -399,31 +409,31 @@ export default function Home() {
           <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
             {/* Left 7 Columns: Enhanced GIS Map Container */}
-            <div className="lg:col-span-7 glass-panel rounded-3xl p-5 sm:p-6 flex flex-col gap-4 border border-slate-800 shadow-glass-card">
-              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800/80">
-                <div className="flex items-center gap-2.5">
-                  <div className="h-8 w-8 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
-                    <MapPin className="h-4 w-4 text-emerald-400" />
+            <div className="lg:col-span-7 glass-panel rounded-3xl p-6 flex flex-col gap-4 border border-white/10 shadow-glass-card">
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center shadow-sm">
+                    <MapPin className="h-5 w-5 text-emerald-400" />
                   </div>
                   <div>
                     <h4 className="font-bold text-sm sm:text-base text-white">
                       Geospatial GIS Command Grid
                     </h4>
-                    <p className="text-[11px] text-slate-400">
-                      High-resolution Satellite Hybrid &amp; Street Atlas with colony address resolution
+                    <p className="text-[11px] text-slate-400 font-light">
+                      Satellite Hybrid &amp; Street Atlas with live reverse-geocoded colony inspection
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/50 px-3 py-1 rounded-full border border-cyan-800/50">
-                    {tickets.length || 4} Geo-Hazards Active
+                  <span className="text-[11px] font-mono font-bold text-cyan-300 bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-500/40">
+                    {tickets.length || 4} Incidents Active
                   </span>
                 </div>
               </div>
 
               {/* Map Container */}
-              <div className="w-full h-[460px] relative rounded-2xl overflow-hidden">
+              <div className="w-full h-[460px] relative rounded-2xl overflow-hidden border border-white/10">
                 <CivicMap 
                   refreshTrigger={refreshKey}
                   focusCoords={focusCoords}
@@ -446,27 +456,27 @@ export default function Home() {
             </div>
 
             {/* Right 5 Columns: Autonomous Gemini AI Triage Console */}
-            <div className="lg:col-span-5 glass-panel rounded-3xl p-5 sm:p-6 flex flex-col gap-4 border border-slate-800 shadow-glass-card">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
-                <div className="flex items-center gap-2.5">
-                  <div className="h-8 w-8 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
-                    <Zap className="h-4 w-4 text-cyan-400" />
+            <div className="lg:col-span-5 glass-panel rounded-3xl p-6 flex flex-col gap-4 border border-white/10 shadow-glass-card">
+              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-2xl bg-cyan-400/10 border border-cyan-400/30 flex items-center justify-center shadow-sm">
+                    <Zap className="h-5 w-5 text-cyan-400" />
                   </div>
                   <div>
                     <h4 className="font-bold text-sm sm:text-base text-white">
                       Gemini 1.5 Triage Engine
                     </h4>
-                    <p className="text-[11px] text-slate-400">
-                      Real-time civil hazard prioritization &amp; road prescriptions
+                    <p className="text-[11px] text-slate-400 font-light">
+                      Real-time hazard prioritization &amp; municipal engineering action plan
                     </p>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
+                <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded-full border border-cyan-500/40">
                   FastAPI v1
                 </span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 <div>
                   <label className="text-[11px] font-mono font-semibold text-slate-400 uppercase tracking-wider">
                     Incident Title
@@ -474,7 +484,7 @@ export default function Home() {
                   <input 
                     value={reportTitle}
                     onChange={(e) => setReportTitle(e.target.value)}
-                    className="w-full mt-1 px-3.5 py-2 text-xs rounded-xl bg-slate-950/90 border border-slate-700/80 focus:border-civic-cyan focus:outline-none text-white transition-all font-mono"
+                    className="w-full mt-1.5 px-4 py-2.5 text-xs rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 focus:outline-none text-white transition-all font-mono"
                     placeholder="e.g. Broken water main flooding transit road"
                   />
                 </div>
@@ -486,7 +496,7 @@ export default function Home() {
                   <select 
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full mt-1 px-3.5 py-2 text-xs rounded-xl bg-slate-950/90 border border-slate-700/80 focus:border-civic-cyan focus:outline-none text-white transition-all font-mono"
+                    className="w-full mt-1.5 px-4 py-2.5 text-xs rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 focus:outline-none text-white transition-all font-mono"
                   >
                     <option value="Drainage & Water">Drainage &amp; Water Management</option>
                     <option value="Waste Management">Waste &amp; Sanitation</option>
@@ -504,14 +514,14 @@ export default function Home() {
                     rows={2}
                     value={reportDesc}
                     onChange={(e) => setReportDesc(e.target.value)}
-                    className="w-full mt-1 px-3.5 py-2 text-xs rounded-xl bg-slate-950/90 border border-slate-700/80 focus:border-civic-cyan focus:outline-none text-white resize-none transition-all font-mono"
+                    className="w-full mt-1.5 px-4 py-2.5 text-xs rounded-xl bg-black/40 border border-white/10 focus:border-cyan-400 focus:outline-none text-white resize-none transition-all font-mono"
                   />
                 </div>
 
                 <button
                   onClick={handleRunAnalysis}
                   disabled={isAnalyzing}
-                  className="w-full py-3 rounded-2xl text-xs font-bold bg-civic-glow text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-neon-cyan disabled:opacity-60"
+                  className="w-full py-3 rounded-2xl text-xs font-bold bg-civic-glow text-slate-950 hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-luxury-cyan disabled:opacity-60"
                 >
                   {isAnalyzing ? (
                     <>
@@ -532,34 +542,34 @@ export default function Home() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="p-4 rounded-2xl bg-slate-950/90 border border-slate-700/80 flex flex-col gap-2.5 mt-1 shadow-glass-card"
+                  className="p-4 rounded-2xl bg-black/50 border border-white/10 flex flex-col gap-2.5 mt-1 shadow-glass-specular"
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                    <span className={`text-[10px] font-extrabold px-2.5 py-0.5 rounded tracking-wide ${
-                      analysisResult.priority_level === 'CRITICAL' ? 'bg-rose-950/70 text-rose-400 border border-rose-800/60 shadow-neon-rose' :
-                      analysisResult.priority_level === 'HIGH' ? 'bg-amber-950/70 text-amber-400 border border-amber-800/60' :
-                      'bg-emerald-950/70 text-emerald-400 border border-emerald-800/60'
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10">
+                    <span className={`text-[10px] font-mono font-extrabold px-3 py-1 rounded-full tracking-wide border ${
+                      analysisResult.priority_level === 'CRITICAL' ? 'bg-rose-950/80 text-rose-300 border-rose-500/50 shadow-luxury-crimson' :
+                      analysisResult.priority_level === 'HIGH' ? 'bg-amber-950/80 text-amber-300 border-amber-500/50 shadow-luxury-gold' :
+                      'bg-emerald-950/80 text-emerald-300 border-emerald-500/50 shadow-luxury-mint'
                     }`}>
                       {analysisResult.priority_level} PRIORITY
                     </span>
-                    <span className="text-xs font-mono font-bold text-civic-cyan">
+                    <span className="text-xs font-mono font-bold text-cyan-300">
                       Severity: {analysisResult.severity_score}/100
                     </span>
                   </div>
 
                   <div>
                     <p className="text-xs font-bold text-white leading-snug">{analysisResult.hazard_type}</p>
-                    <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
-                      <span className="text-slate-400 font-semibold">Recommended Action: </span>{analysisResult.recommended_action}
+                    <p className="text-[11px] text-slate-300 mt-1.5 leading-relaxed font-light">
+                      <span className="text-slate-400 font-semibold font-mono">Action: </span>{analysisResult.recommended_action}
                     </p>
-                    <p className="text-[10px] text-slate-400 mt-1">
+                    <p className="text-[10px] text-slate-400 mt-1 font-mono">
                       <span className="text-emerald-400 font-semibold">Eco Impact: </span>{analysisResult.sustainability_impact}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-1 mt-1 pt-2 border-t border-slate-800/80">
+                  <div className="flex flex-wrap gap-1 mt-1 pt-2 border-t border-white/10">
                     {analysisResult.actionable_tags.map((tag) => (
-                      <span key={tag} className="text-[9px] font-mono font-medium px-2 py-0.5 rounded bg-slate-900 text-cyan-300 border border-slate-800">
+                      <span key={tag} className="text-[9px] font-mono font-medium px-2 py-0.5 rounded bg-white/5 text-cyan-300 border border-white/10">
                         #{tag}
                       </span>
                     ))}
@@ -601,9 +611,9 @@ export default function Home() {
         </div>
 
         {/* 8. FOOTER TELEMETRY & ATTRIBUTIONS */}
-        <footer className="pt-8 pb-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
+        <footer className="pt-8 pb-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#00F5A0]" />
             <span>CivicSense AI OS v2.4 • Autonomous City Command &amp; Sustainability Platform</span>
           </div>
 

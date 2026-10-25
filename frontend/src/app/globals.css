@@ -9,24 +9,25 @@
 }
 
 body {
-  background-color: #070B14;
+  background-color: #020408;
   color: #f8fafc;
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
 }
 
 /* ------------------------------------------------------------- */
-/* Futuristic Ambient Mesh Grid (Palantir Gotham / Tesla HUD)     */
+/* High-End Aurora Mesh & Cyber Grid (Linear / Stripe Luxury)    */
 /* ------------------------------------------------------------- */
 .bg-mesh-grid {
   background-image: 
-    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(6, 182, 212, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(59, 130, 246, 0.12) 0%, transparent 55%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at 50% -10%, rgba(0, 245, 160, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(0, 217, 245, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 10% 40%, rgba(99, 102, 241, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(217, 70, 239, 0.08) 0%, transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
 }
 
 /* Light Theme Overrides */
@@ -36,112 +37,129 @@ html.light {
 
 html.light body {
   background-color: #f8fafc;
-  color: #0f172a;
+  color: #090d16;
 }
 
 html.light .bg-mesh-grid {
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    radial-gradient(circle at 50% -10%, rgba(0, 245, 160, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 90% 20%, rgba(0, 217, 245, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 10% 40%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
 /* ------------------------------------------------------------- */
-/* Apple Vision Pro & Tesla Command Glassmorphism                */
+/* Apple Vision Pro & Linear Specular Cards                     */
 /* ------------------------------------------------------------- */
 .glass-panel {
-  background: rgba(11, 18, 32, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(30, 41, 59, 0.85);
-  box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(8, 14, 28, 0.72);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+    0 20px 45px -15px rgba(0, 0, 0, 0.75);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel:hover {
-  border-color: rgba(6, 182, 212, 0.4);
-  box-shadow: 0 14px 40px -5px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(6, 182, 212, 0.2);
+  border-color: rgba(0, 217, 245, 0.35);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    0 0 35px -5px rgba(0, 217, 245, 0.18),
+    0 24px 50px -15px rgba(0, 0, 0, 0.85);
+  transform: translateY(-2px);
 }
 
 .glass-panel-glow {
-  background: rgba(11, 18, 32, 0.8);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  box-shadow: 0 0 40px -5px rgba(16, 185, 129, 0.25), 0 12px 35px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(11, 18, 36, 0.85) 0%, rgba(5, 9, 20, 0.95) 100%);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(0, 245, 160, 0.3);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 45px -5px rgba(0, 245, 160, 0.22),
+    0 25px 60px -15px rgba(0, 0, 0, 0.85);
 }
 
 html.light .glass-panel {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+    0 12px 30px -8px rgba(0, 0, 0, 0.08);
+}
+
+html.light .glass-panel:hover {
+  border-color: rgba(0, 217, 245, 0.5);
+  box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.12);
 }
 
 html.light .glass-panel-glow {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(16, 185, 129, 0.45);
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.2), 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 245, 160, 0.5);
+  box-shadow: 
+    0 0 35px -5px rgba(0, 245, 160, 0.25),
+    0 15px 35px -8px rgba(0, 0, 0, 0.08);
 }
 
 /* ------------------------------------------------------------- */
-/* Cinematic Text Reveal & Light Sweep                           */
+/* Apple Liquid Chrome & Shimmer Typography                     */
 /* ------------------------------------------------------------- */
+.text-chrome {
+  background: linear-gradient(180deg, #FFFFFF 20%, #E2E8F0 65%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #ffffff 0%,
-    #a7f3d0 25%,
-    #67e8f9 50%,
-    #93c5fd 75%,
-    #ffffff 100%
+    #FFFFFF 0%,
+    #A7F3D0 20%,
+    #67E8F9 40%,
+    #C4B5FD 60%,
+    #F472B6 80%,
+    #FFFFFF 100%
   );
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shimmer 4s linear infinite;
+  animation: shimmer 5s linear infinite;
 }
 
 /* ------------------------------------------------------------- */
-/* HUD Corner Brackets & Cybernetic Borders                      */
+/* Jewel-Tone Badges & Neon Pills                                */
 /* ------------------------------------------------------------- */
-.hud-corner {
-  position: relative;
-}
-.hud-corner::before,
-.hud-corner::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  pointer-events: none;
-}
-.hud-corner::before {
-  top: -1px;
-  left: -1px;
-  border-top: 2px solid #06b6d4;
-  border-left: 2px solid #06b6d4;
-}
-.hud-corner::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 2px solid #10b981;
-  border-right: 2px solid #10b981;
+.badge-mint {
+  background: rgba(0, 245, 160, 0.12);
+  color: #00F5A0;
+  border: 1px solid rgba(0, 245, 160, 0.35);
+  box-shadow: 0 0 18px rgba(0, 245, 160, 0.15);
 }
 
-/* Scanline Effect */
-.scanline-overlay {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0) 50%,
-    rgba(6, 182, 212, 0.05) 50%,
-    rgba(6, 182, 212, 0.05)
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
+.badge-cyan {
+  background: rgba(0, 217, 245, 0.12);
+  color: #00D9F5;
+  border: 1px solid rgba(0, 217, 245, 0.35);
+  box-shadow: 0 0 18px rgba(0, 217, 245, 0.15);
+}
+
+.badge-gold {
+  background: rgba(255, 184, 0, 0.12);
+  color: #FFB800;
+  border: 1px solid rgba(255, 184, 0, 0.35);
+  box-shadow: 0 0 18px rgba(255, 184, 0, 0.15);
+}
+
+.badge-crimson {
+  background: rgba(255, 51, 102, 0.12);
+  color: #FF3366;
+  border: 1px solid rgba(255, 51, 102, 0.35);
+  box-shadow: 0 0 18px rgba(255, 51, 102, 0.15);
 }
 
 /* ------------------------------------------------------------- */
@@ -159,14 +177,14 @@ html.light .glass-panel-glow {
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
+  background: #00d9f5;
 }
 
 html.light ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
 }
 html.light ::-webkit-scrollbar-thumb:hover {
-  background: #10b981;
+  background: #00f5a0;
 }
 
 /* ------------------------------------------------------------- */
@@ -175,9 +193,9 @@ html.light ::-webkit-scrollbar-thumb:hover {
 .leaflet-container {
   width: 100%;
   height: 100%;
-  background: #070B14 !important;
+  background: #020408 !important;
   font-family: inherit;
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
 }
 
 html.light .leaflet-container {
@@ -185,31 +203,31 @@ html.light .leaflet-container {
 }
 
 .leaflet-bar a {
-  background-color: #0b1220 !important;
-  color: #10b981 !important;
-  border-color: #1e293b !important;
+  background-color: #060913 !important;
+  color: #00f5a0 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 html.light .leaflet-bar a {
   background-color: #ffffff !important;
-  color: #0f172a !important;
+  color: #090d16 !important;
   border-color: #cbd5e1 !important;
 }
 
 .leaflet-popup-content-wrapper {
-  background: rgba(11, 18, 32, 0.96) !important;
+  background: rgba(6, 10, 20, 0.96) !important;
   color: #f8fafc !important;
-  border: 1px solid rgba(6, 182, 212, 0.5) !important;
+  border: 1px solid rgba(0, 217, 245, 0.45) !important;
   border-radius: 1.25rem !important;
-  box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.8), 0 0 25px -5px rgba(6, 182, 212, 0.3) !important;
-  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.9), 0 0 30px -5px rgba(0, 217, 245, 0.3) !important;
+  backdrop-filter: blur(24px);
   padding: 0 !important;
   overflow: hidden;
 }
 
 html.light .leaflet-popup-content-wrapper {
   background: rgba(255, 255, 255, 0.98) !important;
-  color: #0f172a !important;
+  color: #090d16 !important;
   border: 1px solid rgba(203, 213, 225, 0.95) !important;
   box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.15) !important;
 }
@@ -220,8 +238,8 @@ html.light .leaflet-popup-content-wrapper {
 }
 
 .leaflet-popup-tip {
-  background: rgba(11, 18, 32, 0.96) !important;
-  border: 1px solid rgba(6, 182, 212, 0.5) !important;
+  background: rgba(6, 10, 20, 0.96) !important;
+  border: 1px solid rgba(0, 217, 245, 0.45) !important;
 }
 
 html.light .leaflet-popup-tip {
@@ -239,5 +257,5 @@ html.light .leaflet-popup-tip {
 }
 
 html.light .leaflet-popup-close-button:hover {
-  color: #0f172a !important;
+  color: #090d16 !important;
 }

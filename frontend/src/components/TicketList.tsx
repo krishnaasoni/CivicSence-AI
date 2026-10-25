@@ -6,9 +6,9 @@ import {
   FileText, 
   Clock, 
   AlertCircle, 
-  ExternalLink,
-  Flame,
-  Building2
+  ExternalLink, 
+  Flame, 
+  Building2 
 } from "lucide-react";
 import { reverseGeocode, GeocodedAddress } from "@/lib/geocoding";
 
@@ -65,48 +65,59 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
   };
 
   return (
-    <div className={`glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-glass-card ${className}`}>
+    <div className={`glass-panel rounded-3xl p-6 sm:p-8 md:p-10 border border-white/10 shadow-glass-card relative overflow-hidden ${className}`}>
+      {/* Background Ambient Lighting */}
+      <div className="absolute top-0 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+
       {/* Header & Filter Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-800/80">
-        <div className="flex items-center gap-3">
-          <div className="h-11 w-11 rounded-2xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center shadow-neon-cyan">
-            <FileText className="h-5 w-5 text-slate-950 font-black" />
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-tr from-cyan-400 via-emerald-400 to-blue-500 flex items-center justify-center shadow-luxury-cyan">
+            <FileText className="h-6 w-6 text-slate-950 font-black" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className="font-extrabold text-base sm:text-lg text-white tracking-tight">
-                Raised Complaint Tickets
+            <div className="flex items-center gap-2.5">
+              <h3 className="font-extrabold text-xl text-white tracking-tight text-chrome">
+                Raised Incident Tickets
               </h3>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-cyan-950/60 text-cyan-400 border border-cyan-800/50">
+              <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-cyan-950/70 text-cyan-300 border border-cyan-500/40">
                 {tickets.length} Tracked
               </span>
             </div>
-            <p className="text-xs text-slate-400">Real-time status of citizen-submitted civic hazards</p>
+            <p className="text-xs text-slate-400 font-light mt-0.5">
+              Real-time telemetry and resolution feed of citizen-reported civic hazards
+            </p>
           </div>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-semibold">
+        {/* Linear-Style Filter Tabs */}
+        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-950/80 border border-white/10 text-xs font-mono font-semibold">
           <button
             onClick={() => setFilter("ALL")}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              filter === "ALL" ? "bg-slate-800 text-white shadow-sm" : "text-slate-400 hover:text-slate-200"
+            className={`px-3.5 py-1.5 rounded-xl transition-all ${
+              filter === "ALL"
+                ? "bg-slate-800 text-white shadow-sm border border-white/10"
+                : "text-slate-400 hover:text-white"
             }`}
           >
             All ({tickets.length})
           </button>
           <button
             onClick={() => setFilter("ACTIVE")}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              filter === "ACTIVE" ? "bg-amber-950/70 text-amber-300 shadow-sm" : "text-slate-400 hover:text-slate-200"
+            className={`px-3.5 py-1.5 rounded-xl transition-all ${
+              filter === "ACTIVE"
+                ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm"
+                : "text-slate-400 hover:text-white"
             }`}
           >
             Active ({tickets.filter((t) => t.status !== "RESOLVED").length})
           </button>
           <button
             onClick={() => setFilter("RESOLVED")}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              filter === "RESOLVED" ? "bg-emerald-950/70 text-emerald-300 shadow-sm" : "text-slate-400 hover:text-slate-200"
+            className={`px-3.5 py-1.5 rounded-xl transition-all ${
+              filter === "RESOLVED"
+                ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm"
+                : "text-slate-400 hover:text-white"
             }`}
           >
             Resolved ({tickets.filter((t) => t.status === "RESOLVED").length})
@@ -115,7 +126,7 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
       </div>
 
       {/* Ticket Cards Grid */}
-      <div className="mt-5 space-y-3.5 max-h-[460px] overflow-y-auto pr-1">
+      <div className="mt-6 space-y-4 max-h-[480px] overflow-y-auto pr-1">
         <AnimatePresence>
           {filteredTickets.map((ticket, i) => {
             const isCritical = ticket.priority_level === "CRITICAL";
@@ -129,40 +140,40 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25, delay: i * 0.04 }}
+                transition={{ duration: 0.25, delay: i * 0.03 }}
                 onClick={() => handleTicketClick(ticket)}
-                className={`p-4 sm:p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden group ${
+                className={`p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden group ${
                   isSelected
-                    ? "bg-slate-900/90 border-civic-cyan/80 shadow-neon-cyan"
-                    : "bg-slate-900/60 border-slate-800/80 hover:border-slate-700 hover:bg-slate-900/80"
+                    ? "bg-slate-900/90 border-cyan-400 shadow-luxury-cyan"
+                    : "bg-white/[0.03] border-white/10 hover:border-cyan-400/40 hover:bg-white/[0.05]"
                 }`}
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     {/* Header Row: ID, Category & Duplicate Badge */}
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-xs font-bold text-civic-cyan bg-cyan-950/40 border border-cyan-800/50 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-xs font-bold text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-2 py-0.5 rounded-md">
                         #{ticket.id}
                       </span>
-                      <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                      <span className="text-xs font-bold text-slate-300 uppercase tracking-wider font-mono">
                         {ticket.issue_type}
                       </span>
 
                       {/* Duplicate Clustering Badge */}
                       {(ticket.duplicate_count || 1) > 1 && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-950/60 text-rose-400 border border-rose-800/50">
-                          <Flame className="h-3 w-3" /> {ticket.duplicate_count} Citizens Reported
+                        <span className="inline-flex items-center gap-1 text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-500/50 shadow-sm animate-pulse">
+                          <Flame className="h-3 w-3 text-rose-400" /> {ticket.duplicate_count} Citizens Reported
                         </span>
                       )}
                     </div>
 
                     {/* Title */}
-                    <h4 className="text-sm sm:text-base font-bold text-white mt-1.5 group-hover:text-cyan-300 transition-colors">
+                    <h4 className="text-sm sm:text-base font-bold text-white mt-2 group-hover:text-cyan-300 transition-colors">
                       {ticket.title}
                     </h4>
 
                     {/* 2-Line Hazard Summary */}
-                    <p className="text-xs text-slate-300 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-slate-300 mt-1 line-clamp-2 leading-relaxed font-light">
                       {ticket.hazard_summary.split("\n")[0]}
                     </p>
                   </div>
@@ -170,14 +181,14 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
                   {/* Status & Priority Badges */}
                   <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
                     <span
-                      className={`text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider border ${
+                      className={`text-[10px] font-mono font-black px-3 py-1 rounded-full uppercase tracking-wider border ${
                         isResolved
-                          ? "bg-emerald-950/70 text-emerald-400 border-emerald-700/60"
+                          ? "bg-emerald-950/80 text-emerald-300 border-emerald-500/50 shadow-luxury-mint"
                           : isCritical
-                          ? "bg-rose-950/70 text-rose-400 border-rose-700/60"
+                          ? "bg-rose-950/80 text-rose-300 border-rose-500/50 shadow-luxury-crimson"
                           : isHigh
-                          ? "bg-amber-950/70 text-amber-400 border-amber-700/60"
-                          : "bg-cyan-950/70 text-cyan-400 border-cyan-700/60"
+                          ? "bg-amber-950/80 text-amber-300 border-amber-500/50 shadow-luxury-gold"
+                          : "bg-cyan-950/80 text-cyan-300 border-cyan-500/50 shadow-luxury-cyan"
                       }`}
                     >
                       {isResolved ? "RESOLVED" : ticket.priority_level}
@@ -190,9 +201,9 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
                 </div>
 
                 {/* Footer Row: Real Colony/City Geotag, Time & Action */}
-                <div className="mt-4 pt-3 border-t border-slate-800/70 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <div className="flex flex-wrap items-center gap-3 text-slate-400 font-mono text-[11px]">
-                    <span className="flex items-center gap-1 text-emerald-400 font-sans font-semibold bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-800/30">
+                    <span className="flex items-center gap-1.5 text-emerald-300 font-sans font-semibold bg-emerald-950/50 px-2.5 py-1 rounded-lg border border-emerald-500/30">
                       <Building2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
                       {ticket.location_name ||
                         (addresses[ticket.id]?.colony
@@ -211,7 +222,7 @@ export default function TicketList({ tickets, onSelectTicket, className = "" }: 
                       e.stopPropagation();
                       handleTicketClick(ticket);
                     }}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-civic-cyan hover:underline group-hover:translate-x-0.5 transition-transform"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-cyan-400 hover:text-cyan-200 group-hover:translate-x-0.5 transition-transform"
                   >
                     Locate on GIS Map <ExternalLink className="h-3 w-3" />
                   </button>
